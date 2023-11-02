@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
-
+export const a ="a"
 describe('AppController (e2e)', () => {
   let app;
 

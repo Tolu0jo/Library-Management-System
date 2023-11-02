@@ -11,6 +11,6 @@ export class BookEntity extends BaseEntity{
   @Column({ name: 'description', nullable: true })
   description: string;
 
-  @Column({ name: 'image', length: 2083 })
-  image: string;
+  @Column({ name: 'userId'})
+  userId: string;
 }

@@ -7,8 +7,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class BookService {
   constructor(@InjectRepository(BookEntity) private bookRepository: Repository<BookEntity>) { }
 
-  async getAll() {
-    return await this.bookRepository.find();
+  async getAll(userId) {
+    return await this.bookRepository.find({
+      where:{
+        userId
+      }
+    });
   }
 
   async getById(id: string) {

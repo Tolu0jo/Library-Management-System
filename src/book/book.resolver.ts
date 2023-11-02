@@ -14,8 +14,8 @@ export class BookResolver {
   constructor(private bookService: BookService) {}
 
   @Query()
-  async Books() {
-    return await this.bookService.getAll();
+  async Books(@Args('userId') userId: string) {
+    return await this.bookService.getAll(userId);
   }
 
   @Query()
@@ -27,12 +27,12 @@ export class BookResolver {
   async createBook(
     @Args('title') title: string,
     @Args('description') description: string,
-    @Args('image') image: string,
+    @Args('userId') userId: string,
   ) {
     const product = {
       title,
       description,
-      image,
+      userId,
     };
     return await this.bookService.create(product);
   }
@@ -43,12 +43,12 @@ export class BookResolver {
     @Args('title') title: string,
     @Args('description') description: string,
 
-    @Args('image') image: string,
+    @Args('userId') userId: string,
   ) {
     const product = {
       title,
       description,
-      image,
+      userId,
     };
     return await this.bookService.update(id, product);
   }
