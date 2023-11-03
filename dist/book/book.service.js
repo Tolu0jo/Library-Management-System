@@ -11,15 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookService = void 0;
 const common_1 = require("@nestjs/common");
@@ -30,49 +21,39 @@ let BookService = class BookService {
     constructor(bookRepository) {
         this.bookRepository = bookRepository;
     }
-    getAll(userId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.bookRepository.find({
-                where: {
-                    userId
-                }
-            });
-        });
-    }
-    getById(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const book = yield this.bookRepository.findOne({ where: { id } });
-            if (book) {
-                return book;
-            }
-            else {
-                throw new common_1.NotFoundException();
+    async getAll(userId) {
+        return await this.bookRepository.find({
+            where: {
+                userId
             }
         });
     }
-    create(data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const book = this.bookRepository.create(data);
-            yield this.bookRepository.save(book);
+    async getById(id) {
+        const book = await this.bookRepository.findOne({ where: { id } });
+        if (book) {
             return book;
-        });
+        }
+        else {
+            throw new common_1.NotFoundException();
+        }
     }
-    update(id, data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.bookRepository.update({ id }, data);
-            return this.bookRepository.findOne({ id });
-        });
+    async create(data) {
+        const book = this.bookRepository.create(data);
+        await this.bookRepository.save(book);
+        return book;
     }
-    delete(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.bookRepository.delete({ id });
-        });
+    async update(id, data) {
+        await this.bookRepository.update({ id }, data);
+        return this.bookRepository.findOne({ where: { id } });
+    }
+    async delete(id) {
+        await this.bookRepository.delete({ id });
     }
 };
-BookService = __decorate([
-    common_1.Injectable(),
-    __param(0, typeorm_2.InjectRepository(book_entity_1.BookEntity)),
+exports.BookService = BookService;
+exports.BookService = BookService = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_2.InjectRepository)(book_entity_1.BookEntity)),
     __metadata("design:paramtypes", [typeorm_1.Repository])
 ], BookService);
-exports.BookService = BookService;
 //# sourceMappingURL=book.service.js.map

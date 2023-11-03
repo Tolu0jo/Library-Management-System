@@ -9,26 +9,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
+const apollo_1 = require("@nestjs/apollo");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeOrm_config_1 = require("./config/typeOrm.config");
 const book_module_1 = require("./book/book.module");
-const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
-AppModule = __decorate([
-    common_1.Module({
+exports.AppModule = AppModule;
+exports.AppModule = AppModule = __decorate([
+    (0, common_1.Module)({
         imports: [
             typeorm_1.TypeOrmModule.forRoot(typeOrm_config_1.typeOrmConfig),
             graphql_1.GraphQLModule.forRoot({
                 typePaths: ['./**/*.graphql'],
                 playground: true,
+                driver: apollo_1.ApolloDriver
             }),
-            book_module_1.BookModule,
-            config_1.ConfigModule.forRoot({
-                isGlobal: true,
-            }),
+            book_module_1.BookModule
         ],
     })
 ], AppModule);
-exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

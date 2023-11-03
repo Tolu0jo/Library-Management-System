@@ -32,7 +32,7 @@ export class BookService {
 
   async update(id: string, data: any) {
     await this.bookRepository.update({ id }, data);
-    return this.bookRepository.findOne({ id });
+    return this.bookRepository.findOne({ where:{id }});
   }
 
   async delete(id: string) {

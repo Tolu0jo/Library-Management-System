@@ -14,11 +14,11 @@ const book_service_1 = require("./book.service");
 const book_resolver_1 = require("./book.resolver");
 let BookModule = class BookModule {
 };
-BookModule = __decorate([
-    common_1.Module({
+exports.BookModule = BookModule;
+exports.BookModule = BookModule = __decorate([
+    (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([book_entity_1.BookEntity])],
         providers: [book_service_1.BookService, book_resolver_1.BookResolver],
     })
 ], BookModule);
-exports.BookModule = BookModule;
 //# sourceMappingURL=book.module.js.map

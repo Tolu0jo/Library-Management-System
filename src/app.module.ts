@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver} from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeOrm.config';
 import { BookModule } from './book/book.module';
-import { ConfigModule } from '@nestjs/config';
-import * as dotenv from 'dotenv';
+
 
 @Module({
   imports: [
@@ -12,11 +12,9 @@ import * as dotenv from 'dotenv';
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
       playground: true,
+      driver:ApolloDriver
     }),
-    BookModule,
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
+    BookModule
   ],
 })
 export class AppModule {}

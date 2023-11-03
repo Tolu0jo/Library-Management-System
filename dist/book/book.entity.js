@@ -13,24 +13,24 @@ exports.BookEntity = void 0;
 const typeorm_1 = require("typeorm");
 let BookEntity = class BookEntity extends typeorm_1.BaseEntity {
 };
+exports.BookEntity = BookEntity;
 __decorate([
-    typeorm_1.PrimaryGeneratedColumn("uuid"),
+    (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
     __metadata("design:type", String)
 ], BookEntity.prototype, "id", void 0);
 __decorate([
-    typeorm_1.Column({ name: 'title' }),
+    (0, typeorm_1.Column)({ name: 'title' }),
     __metadata("design:type", String)
 ], BookEntity.prototype, "title", void 0);
 __decorate([
-    typeorm_1.Column({ name: 'description', nullable: true }),
+    (0, typeorm_1.Column)({ name: 'description', nullable: true }),
     __metadata("design:type", String)
 ], BookEntity.prototype, "description", void 0);
 __decorate([
-    typeorm_1.Column({ name: 'userId' }),
+    (0, typeorm_1.Column)({ name: 'userId' }),
     __metadata("design:type", String)
 ], BookEntity.prototype, "userId", void 0);
-BookEntity = __decorate([
-    typeorm_1.Entity('book')
+exports.BookEntity = BookEntity = __decorate([
+    (0, typeorm_1.Entity)('book')
 ], BookEntity);
-exports.BookEntity = BookEntity;
 //# sourceMappingURL=book.entity.js.map

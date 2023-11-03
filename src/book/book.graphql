@@ -7,7 +7,7 @@ type Book {
 
 type Query {
   Books(userId:String): [Book!]
-  Book(id: Int): Book!
+  Book(id: String): Book!
 }
 
 type Mutation {
