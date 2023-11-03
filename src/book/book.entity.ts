@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinColumn, BaseEnt
 
 @Entity('book')
 export class BookEntity extends BaseEntity{
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column({ name: 'title' })

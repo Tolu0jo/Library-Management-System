@@ -1,12 +1,10 @@
 import {
   Resolver,
   Query,
-  ResolveProperty,
   Args,
   Mutation,
 } from '@nestjs/graphql';
 
-import { userInfo } from 'os';
 import { BookService } from './book.service';
 
 @Resolver()
